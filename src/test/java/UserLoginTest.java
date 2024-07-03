@@ -3,6 +3,7 @@ import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
 import models.User;
+import com.github.javafaker.Faker;
 import models.UserClient;
 import org.apache.http.HttpStatus;
 import org.junit.After;
@@ -12,6 +13,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class UserLoginTest {
+
+    static Faker faker = new Faker();
 
     private UserClient userClient;
     private User user;
@@ -38,7 +41,7 @@ public class UserLoginTest {
 
     @Test
     @DisplayName("Проверка логина пользователя")
-    public void ShouldBeLoginUserTest() {
+    public void shouldBeLoginUserTest() {
         ValidatableResponse response = userClient.login(user);
 
         assertEquals("Статус код неверный при логине пользователя",
@@ -50,7 +53,7 @@ public class UserLoginTest {
 
     @Test
     @DisplayName("Проверка логина пользователя с неверным почтовым адресом")
-    public void ShouldBeLoginUserWithIncorrectNameTest() {
+    public void shouldBeLoginUserWithIncorrectNameTest() {
         user.setEmail("incorrect@mail.com");
         ValidatableResponse response = userClient.login(user);
 
@@ -63,8 +66,8 @@ public class UserLoginTest {
 
     @Test
     @DisplayName("Проверка логина пользователя с неверным паролем")
-    public void ShouldBeLoginUserWithIncorrectPasswordTest() {
-        user.setPassword("qwerty1234");
+    public void shouldBeLoginUserWithIncorrectPasswordTest() {
+        user.setPassword(faker.internet().password());
         ValidatableResponse response = userClient.login(user);
 
         assertEquals("Статус код неверный при логине пользователя с неверным паролем",

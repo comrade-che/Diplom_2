@@ -48,7 +48,7 @@ public class UserEditingTest {
 
     @Test
     @DisplayName("Проверка изменение почтового адреса авторизованного пользователя")
-    public void ShouldBeEditEmailUserTest() {
+    public void shouldBeEditEmailUserTest() {
         ValidatableResponse response = userClient.edit(accessTokenExtraction(user),
                 new User(faker.internet().emailAddress(), user.getPassword(), user.getName()));
 
@@ -61,7 +61,7 @@ public class UserEditingTest {
 
     @Test
     @DisplayName("Проверка изменение имени авторизованного пользователя")
-    public void ShouldBeEditNameUserTest() {
+    public void shouldBeEditNameUserTest() {
         ValidatableResponse response = userClient.edit(accessTokenExtraction(user),
                 new User(user.getEmail(), user.getPassword(), faker.name().firstName()));
 
@@ -74,7 +74,7 @@ public class UserEditingTest {
 
     @Test
     @DisplayName("Проверка изменение пароля авторизованного пользователя")
-    public void ShouldBeEditPasswordUserTest() {
+    public void shouldBeEditPasswordUserTest() {
         ValidatableResponse response = userClient.edit(accessTokenExtraction(user),
                 new User(user.getEmail(), faker.internet().password(), user.getName()));
 
@@ -87,7 +87,7 @@ public class UserEditingTest {
 
     @Test
     @DisplayName("Проверка изменение пароля авторизованного пользователя")
-    public void ShouldBeEditPasswordNonLoginUserTest() {
+    public void shouldBeEditPasswordNonLoginUserTest() {
         accessToken = "";
         ValidatableResponse response = userClient.edit(accessToken,
                 new User(user.getEmail(), faker.internet().password(), user.getName()));
@@ -101,12 +101,12 @@ public class UserEditingTest {
 
     @Test
     @DisplayName("Проверка изменение почтового адреса НЕавторизованного пользователя")
-    public void ShouldBeEditEmailNonLoginUserTest() {
+    public void shouldBeEditEmailNonLoginUserTest() {
         accessToken = "";
         ValidatableResponse response = userClient.edit(accessToken,
                 new User(faker.internet().emailAddress(), user.getPassword(), user.getName()));
 
-        assertEquals("Статус код неверный при изменение почтового адреса НЕавторизованного пользователя",
+        assertEquals("Статус код неверный при изменение почтового адреса Неавторизованного пользователя",
                 HttpStatus.SC_UNAUTHORIZED, response.extract().statusCode());
 
         assertFalse("Невалидные данные в теле:", response.extract().path("success"));
@@ -115,12 +115,12 @@ public class UserEditingTest {
 
     @Test
     @DisplayName("Проверка изменение имени НЕавторизованного пользователя")
-    public void ShouldBeEditNameNonLoginUserTest() {
+    public void shouldBeEditNameNonLoginUserTest() {
         accessToken = "";
         ValidatableResponse response = userClient.edit(accessToken,
                 new User(user.getEmail(), user.getPassword(), faker.name().firstName()));
 
-        assertEquals("Статус код неверный при изменение имени НЕавторизованного пользователя",
+        assertEquals("Статус код неверный при изменение имени Неавторизованного пользователя",
                 HttpStatus.SC_UNAUTHORIZED, response.extract().statusCode());
 
         assertFalse("Невалидные данные в теле:", response.extract().path("success"));

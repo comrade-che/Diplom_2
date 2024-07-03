@@ -38,7 +38,7 @@ public class UserCreationTest {
 
         @Test
         @DisplayName("Проверка создания пользователя")
-        public void ShouldBeCreateUniqueUserTest() {
+        public void shouldBeCreateUniqueUserTest() {
             ValidatableResponse response = userClient.create(user);
 
             assertEquals("Статус код неверный при создании пользователя",
@@ -50,7 +50,7 @@ public class UserCreationTest {
 
         @Test
         @DisplayName("Проверка создания пользователя, который уже зарегистрирован")
-        public void ShouldBeCreateAlreadyExistUserTest() {
+        public void shouldBeCreateAlreadyExistUserTest() {
             userClient.create(user);
 
             ValidatableResponse response = userClient.create(user);
@@ -64,7 +64,7 @@ public class UserCreationTest {
 
         @Test
         @DisplayName("Проверка создания пользователя без заполнения почтового адреса")
-        public void ShouldBeCreateUserWithoutEmailTest() {
+        public void shouldBeCreateUserWithoutEmailTest() {
             user.setEmail(null);
             userClient.create(user);
 
@@ -79,7 +79,7 @@ public class UserCreationTest {
 
         @Test
         @DisplayName("Проверка создания пользователя без заполнения пароля")
-        public void ShouldBeCreateUserWithoutPasswordTest() {
+        public void shouldBeCreateUserWithoutPasswordTest() {
             user.setPassword(null);
             userClient.create(user);
 
@@ -94,7 +94,7 @@ public class UserCreationTest {
 
         @Test
         @DisplayName("Проверка создания пользователя без заполнения имени")
-        public void ShouldBeCreateUserWithoutNameTest() {
+        public void shouldBeCreateUserWithoutNameTest() {
             user.setName(null);
             userClient.create(user);
 

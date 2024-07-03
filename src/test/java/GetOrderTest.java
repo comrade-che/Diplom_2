@@ -44,7 +44,7 @@ public class GetOrderTest {
 
         @Test
         @DisplayName("Проверка получения заказа с авторизацией")
-        public void ShoulBeGetOrderWithLoginTest() {
+        public void shouldBeGetOrderWithLoginTest() {
             ValidatableResponse response = orderClient.getUserOrder(user, accessTokenExtraction(user));
 
             assertEquals("Статус код неверный при получении заказа с авторизацией",
@@ -56,8 +56,8 @@ public class GetOrderTest {
 
     @Test
     @DisplayName("Проверка получения заказа без авторизации")
-    public void ShoulBeGetOrderWithoutLoginTest() {
-        ValidatableResponse response = orderClient.getUserOrder(user, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzMyYThhOWVkMjgwMDAxYjQ0Mjk5NyIsImlhdCI6MTcxODgyMzU3NSwiZXhwIjoxNzE4ODI0Nzc1fQ.fxPA1Qa6djiU23SJzBaYMVgGiHA8p51PZZtN25Pd-sQ");
+    public void shouldBeGetOrderWithoutLoginTest() {
+        ValidatableResponse response = orderClient.getUserOrder(user, "");
 
         assertEquals("Статус код неверный при получении заказа без авторизации",
                 HttpStatus.SC_UNAUTHORIZED, response.extract().statusCode());

@@ -77,7 +77,7 @@ public class OrderCreationTest {
 
     @Test
     @DisplayName("Проверка создания заказа с авторизацией")
-    public void ShouldBeCreateOrderWithLoginTest() {
+    public void shouldBeCreateOrderWithLoginTest() {
         order = createOrder();
         ValidatableResponse response = orderClient.create(order, accessTokenExtraction(user));
 
@@ -90,9 +90,9 @@ public class OrderCreationTest {
 
     @Test
     @DisplayName("Проверка создания заказа без авторизации")
-    public void ShouldBeCreateOrderWithoutLoginTest() {
+    public void shouldBeCreateOrderWithoutLoginTest() {
         order = createOrder();
-        ValidatableResponse response = orderClient.create(order, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzMyYThhOWVkMjgwMDAxYjQ0Mjk5NyIsImlhdCI6MTcxODgyMzU3NSwiZXhwIjoxNzE4ODI0Nzc1fQ.fxPA1Qa6djiU23SJzBaYMVgGiHA8p51PZZtN25Pd-sQ");
+        ValidatableResponse response = orderClient.create(order, "");
 
         assertEquals("Статус код неверный при создании заказа без авторизации",
                 HttpStatus.SC_OK, response.extract().statusCode());
@@ -104,7 +104,7 @@ public class OrderCreationTest {
 
     @Test
     @DisplayName("Проверка создания заказа без ингредиентов")
-    public void ShouldBeCreateOrderWithoutIngredientsTest() {
+    public void shouldBeCreateOrderWithoutIngredientsTest() {
         order = createBrokenOrder("empty");
         ValidatableResponse response = orderClient.create(order, accessTokenExtraction(user));
 
@@ -117,7 +117,7 @@ public class OrderCreationTest {
 
     @Test
     @DisplayName("Проверка создания заказа c невалидным хэшем ингредиентов")
-    public void ShouldBeCreateOrderWithIncorrectHashTest() {
+    public void shouldBeCreateOrderWithIncorrectHashTest() {
         order = createBrokenOrder("incorrect hash");
         ValidatableResponse response = orderClient.create(order, accessTokenExtraction(user));
 
